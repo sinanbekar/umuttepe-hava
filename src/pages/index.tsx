@@ -16,7 +16,7 @@ const Home: NextPage = () => {
   const getWeatherData = React.useCallback(async () => {
     resetWeatherData();
     const response = await fetch("/api/weather");
-    const data = await response.json();
+    const data: WeatherAPIResponse = await response.json();
     updateWeatherData(data);
     updateWeatherData({ isLoading: false });
   }, [resetWeatherData, updateWeatherData]);

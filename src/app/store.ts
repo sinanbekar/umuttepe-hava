@@ -2,6 +2,7 @@ import { useLayoutEffect } from "react";
 import create, { UseBoundStore } from "zustand";
 import createContext from "zustand/context";
 import { combine } from "zustand/middleware";
+import { WeatherAPIResponse } from "../lib/weather";
 
 let store: any;
 
@@ -18,13 +19,7 @@ export type InitalState = {
   isFocusedToStream: boolean;
   weather: {
     isLoading: boolean;
-    degreesUnit: string;
-    current: {
-      tempValue: number;
-      phraseValue: string;
-    };
-    days: { day: string; highTempValue: number; phraseValue: string }[];
-  };
+  } & WeatherAPIResponse;
 };
 
 const getDefaultInitialState = () =>
@@ -41,7 +36,7 @@ const getDefaultInitialState = () =>
       },
       days: [],
     },
-  } as InitalState);
+  } as unknown as InitalState);
 
 const zustandContext = createContext<UseStoreState>();
 export const Provider = zustandContext.Provider;
