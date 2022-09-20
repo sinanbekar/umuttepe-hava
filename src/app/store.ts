@@ -35,6 +35,7 @@ const getDefaultInitialState = () =>
         phraseValue: "...",
       },
       days: [],
+      prediction: "...",
     },
   } as unknown as InitalState);
 

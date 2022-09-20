@@ -166,13 +166,15 @@ export const getWeatherData = async () => {
   const activeIndex = today.findIndex((data) => data.isActive);
   const later = today.length > activeIndex ? today[activeIndex + 1] : undefined; // if undefined, its overnight and we have no data
 
-  const summary =
+  const currentConditionsText =
+    current.phraseValue && current.tempValue
+      ? `Umuttepe'de hava şu an ${current.phraseValue.toLowerCase()}, sıcaklık yaklaşık ${
+          current.tempValue
+        }°C.`
+      : null;
+
+  const predictionText =
     [
-      current.phraseValue && current.tempValue
-        ? `Umuttepe'de hava şu an ${current.phraseValue.toLowerCase()}, sıcaklık yaklaşık ${
-            current.tempValue
-          }°C.`
-        : undefined,
       precipIntensity.text,
       later
         ? later.day && later.phraseValue && later.highTempValue
@@ -187,6 +189,9 @@ export const getWeatherData = async () => {
       .join(" ")
       .trim() || null;
 
+  const summary =
+    [currentConditionsText, predictionText].join(" ").trim() || null;
+
   return {
     degreesUnit,
     location,
@@ -194,6 +199,7 @@ export const getWeatherData = async () => {
     precipIntensity,
     today,
     days,
+    prediction: predictionText,
     summary,
   };
 };

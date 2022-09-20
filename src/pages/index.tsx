@@ -67,6 +67,9 @@ const Home: NextPage = () => {
               </h2>
               <h3 className="mt-2 text-2xl">{weather.current.phraseValue}</h3>
             </div>
+            <h4 className="mx-auto mt-6 max-w-md px-8 text-xs md:text-sm">
+              {weather.prediction}
+            </h4>
           </div>
 
           <div className="flex h-20">
