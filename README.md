@@ -1,34 +1,49 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# [umuttepe-hava.vercel.app](https://umuttepe-hava.vercel.app)
+
+Progressive web application for Umuttepe weather conditions, includes live stream in the background. Built with Next.js, TypeScript and Tailwind CSS.
+
+### Umuttepe
+
+Kocaeli University's central campus is located in Umuttepe. Umuttepe is one of the places that have unstable weather conditions compared to Izmit Centre because of its 1276 feet (389 meters) altitude.
+
+## Technologies
+
+This project was developed with the following technologies:
+
+- [Next.js](https://nextjs.org/)
+- next-pwa
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
 
 ## Getting Started
 
-First, run the development server:
+1. Fork this repository and clone it into the current directory
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+   ```bash
+   git clone https://github.com/sinanbekar/umuttepe-hava
+   ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+   ```bash
+   yarn
+   ```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+3. Start dev server and watch files
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+   ```bash
+   yarn dev
+   ```
 
-## Learn More
+## Disclaimer
 
-To learn more about Next.js, take a look at the following resources:
+kocaeliyiseyret.com's contents are copyrighted by Kocaeli Metropolitan Municipality.
+weather.com crawled data are also used in this project.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Use as only for **educational purposes**.
+Use at **your own risk**.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This project is under the MIT license. See the [LICENSE](LICENSE) for details.
