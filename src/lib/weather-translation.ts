@@ -67,12 +67,12 @@ const TRANSLATION = {
 // 47 - Scattered Thunderstorms (night)
 
 type Props = {
-  weather?: string | null;
+  weather: string | null;
   isPrecip?: boolean;
 };
 
 export const weatherTranslation = ({ weather, isPrecip = false }: Props) => {
-  if (!weather) return weather;
+  if (!weather) return null;
 
   const map = new Map(Object.entries(TRANSLATION));
   const key = `${weather}${isPrecip ? "_PRECIP" : ""}`;

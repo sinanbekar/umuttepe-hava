@@ -7,7 +7,7 @@ import useInterval from "../app/useInterval";
 import { getKocaeliyiSeyretData } from "../lib/kocaeliyiseyret";
 import SwitchButton from "../components/SwitchButton";
 import Video from "../components/Video";
-import Loading from "../components/Loading";
+import { WeatherAPIResponse } from "../lib/weather";
 
 const Home: NextPage = () => {
   const { weather, isFocusedToStream, updateWeatherData, resetWeatherData } =
@@ -16,7 +16,7 @@ const Home: NextPage = () => {
   const getWeatherData = React.useCallback(async () => {
     resetWeatherData();
     const response = await fetch("/api/weather");
-    const data = await response.json();
+    const data: WeatherAPIResponse = await response.json();
     updateWeatherData(data);
     updateWeatherData({ isLoading: false });
   }, [resetWeatherData, updateWeatherData]);
@@ -55,46 +55,43 @@ const Home: NextPage = () => {
           { invisible: isFocusedToStream }
         )}
       >
-        {weather.isLoading ? (
-          <Loading />
-        ) : (
-          <>
-            <div className="mb-16 flex flex-col justify-center">
-              <h1 className="text-3xl font-semibold">Umuttepe</h1>
-              <div className="mt-6">
-                <h2 className="flex justify-center">
-                  <span className="ml-8 text-9xl">
-                    {weather.current.tempValue}
-                  </span>
-                  <span className="text-3xl">°{weather.degreesUnit}</span>
-                </h2>
-                <h3 className="ml-2 mt-2 text-2xl">
-                  {weather.current.phraseValue}
-                </h3>
-              </div>
+        <>
+          <div className="mb-12 flex flex-col justify-center">
+            <h1 className="text-4xl font-semibold">Umuttepe</h1>
+            <div className="mt-6">
+              <h2 className="flex justify-center">
+                <span className="ml-8 text-9xl">
+                  {weather.isLoading ? "..." : weather.current.tempValue}
+                </span>
+                <span className="text-3xl">°{weather.degreesUnit}</span>
+              </h2>
+              <h3 className="mt-2 text-2xl">{weather.current.phraseValue}</h3>
             </div>
+            <h4 className="mx-auto mt-6 max-w-md px-8 text-xs md:text-sm">
+              {weather.prediction}
+            </h4>
+          </div>
 
-            <div className="flex h-20">
-              {weather.days.slice(1, 4).map(
-                // 3 days
-                (daily, id) => (
-                  <div key={id} className="flex-1 text-center">
-                    <span className="block">{daily.day}</span>
-                    <div className="flex justify-center">
-                      <span className="ml-2 text-xl font-bold">
-                        {daily.highTempValue}
-                      </span>
-                      <span className="font-bold">°</span>
-                    </div>
-                    <span className="ml-2 block text-xs">
-                      {daily.phraseValue}
+          <div className="flex h-20">
+            {weather.days.slice(1, 4).map(
+              // 3 days
+              (daily, id) => (
+                <div key={id} className="flex-1">
+                  <span className="block">{daily.day}</span>
+                  <div className="flex justify-center">
+                    <span className="ml-2 text-xl font-bold">
+                      {daily.highTempValue}
                     </span>
+                    <span className="font-bold">°</span>
                   </div>
-                )
-              )}
-            </div>
-          </>
-        )}
+                  <span className="ml-2 block text-xs">
+                    {daily.phraseValue}
+                  </span>
+                </div>
+              )
+            )}
+          </div>
+        </>
       </div>
     </>
   );
